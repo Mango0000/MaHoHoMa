@@ -18,7 +18,7 @@ public class APICon extends AsyncTask<String, String, String> {
     protected String doInBackground(String... strings) {
         try {
             URL url = null;
-            url = new URL("https://financialmodelingprep.com/api/v3/search?query="+strings[0]);
+            url = new URL("https://financialmodelingprep.com/api/v3/search?query="+strings[0]+"&limit=20");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String result="";

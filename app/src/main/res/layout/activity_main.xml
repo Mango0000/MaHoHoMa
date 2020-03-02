@@ -21,10 +21,15 @@
         android:layout_height="wrap_content"
         android:text="@string/search" />
 
-    <TextView
-        android:id="@+id/tvSearch"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="638dp"
-        android:text="test" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test" />
+    </ScrollView>
 
 </LinearLayout>
