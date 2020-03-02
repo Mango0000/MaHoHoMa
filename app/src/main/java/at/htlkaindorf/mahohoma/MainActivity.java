@@ -32,12 +32,13 @@ public class MainActivity extends AppCompatActivity {
         tvSearch = findViewById(R.id.tvSearch);
         btsearch = findViewById(R.id.btSearch);
         btsearch.setOnClickListener(this::onSearch);
+        etSearch.setText("NASDAQ");
     }
 
     public void onSearch(View view){
         APICon apic = new APICon();
         try {
-            tvSearch.setText(apic.execute("test").get());
+            tvSearch.setText(apic.execute(etSearch.getText().toString()).get());
         } catch (ExecutionException e) {
             tvSearch.setText(e.toString());
         } catch (InterruptedException e) {

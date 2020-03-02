@@ -18,10 +18,15 @@ public class APICon extends AsyncTask<String, String, String> {
     protected String doInBackground(String... strings) {
         try {
             URL url = null;
-            url = new URL("https://financialmodelingprep.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ");
+            url = new URL("https://financialmodelingprep.com/api/v3/search?query="+strings[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            return br.readLine();
+            String result="";
+            String line;
+            while((line=br.readLine())!=null){
+                result+=line;
+            }
+            return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return e.toString();
