@@ -1,35 +1,33 @@
 package at.htlkaindorf.mahohoma;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class APICon extends AsyncTask<String, Void, String> {
+public class APICon extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... strings) {
-        URL url = null;
         try {
+            URL url = null;
             url = new URL("https://financialmodelingprep.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            return br.readLine();
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-            String text="";
-            for (String line; (line = reader.readLine()) != null;) {
-                text += line+"\n";
-            }
-            return text;
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            return e.toString();
         } catch (IOException e) {
             e.printStackTrace();
+            return e.toString();
         }
-        return null;
     }
 }
